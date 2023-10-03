@@ -14,7 +14,8 @@ M.tbl_filetypes = {
     'markdown',
     'astro', 'glimmer', 'handlebars', 'hbs',
     'htmldjango',
-    'eruby'
+    'eruby',
+    "templ"
 }
 
 -- stylua: ignore
@@ -75,7 +76,7 @@ local HBS_TAG = {
     close_tag_pattern      = 'element_node_end',
     close_name_tag_pattern = 'tag_name',
     element_tag            = 'element_node',
-    skip_tag_pattern       = { 'element_node_end', 'attribute_node', 'concat_statement' },
+    skip_tag_pattern       = { 'attribute', 'attribute_name', 'quoted_attribute_value' },
 }
 
 
@@ -92,10 +93,24 @@ local SVELTE_TAG = {
     skip_tag_pattern       = { 'quoted_attribute_value', 'end_tag' },
 }
 
+-- stylua: ignore
+local TEMPL_TAG = {
+    filetypes              = { 'templ' },
+    start_tag_pattern      = 'tag_start',
+    start_name_tag_pattern = 'element_identifier',
+    end_tag_pattern        = 'tag_end',
+    end_name_tag_pattern   = 'element_identifier',
+    close_tag_pattern      = 'tag_end',
+    close_name_tag_pattern = 'element_identifier',
+    element_tag            = 'element',
+    skip_tag_pattern       = { 'element_node_end', 'attribute_node', 'concat_statement' },
+}
+
 local all_tag = {
     HBS_TAG,
     SVELTE_TAG,
     JSX_TAG,
+    TEMPL_TAG,
 }
 M.enable_rename = true
 M.enable_close = true
