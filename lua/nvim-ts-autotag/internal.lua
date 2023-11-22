@@ -103,7 +103,7 @@ local TEMPL_TAG = {
     close_tag_pattern      = 'tag_end',
     close_name_tag_pattern = 'element_identifier',
     element_tag            = 'element',
-    skip_tag_pattern       = { 'element_node_end', 'attribute_node', 'concat_statement' },
+    skip_tag_pattern       = { 'element_node_end', 'attribute_node', 'concat_statement', 'attribute' },
 }
 
 local all_tag = {
